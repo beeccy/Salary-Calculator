@@ -9,11 +9,11 @@ public class MainApplication {
         double taxPercentage = 0.75;
         double holidayPercentage = 0.78;
 
-//        SalaryBeforeTax(hoursWorked, hourlyPay, lunchBreak);
-//        double timeCalculated = SalaryAfterTax(hourlySalary, taxPercentage);
-
         double calculatedPay = calculatePay(hoursWorked, hourlyPay, lunchBreak);
-        SalaryAfterTax(calculatedPay, taxPercentage);
+        double finishedSalary = SalaryAfterTax(calculatedPay, taxPercentage, holidayPercentage);
+
+        Print(calculatedPay);
+        Print(finishedSalary);
     }
 
     /* This calculates time correctly */
@@ -27,8 +27,12 @@ public class MainApplication {
         return timeCalculated;
     }
 
-    public static double SalaryAfterTax(double x, double y) {
-        
+    public static double SalaryAfterTax(double salary, double tax, double holiday) {
+        double toAvoidDesimals = 100;
+
+        double calculateSalary = (salary * tax) * holiday;
+
+        return calculateSalary;
     }
 
     public static void Print(double printNumber) {
