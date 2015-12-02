@@ -4,11 +4,11 @@ public class MainApplication {
     public static void main(String[] args) {
         double percentage = 1;
 
-        double hourlyPay = JOptionFunction("What is your hourly pay?");
-        double hoursWorked = JOptionFunction("How many hours have you worked?");
-        double lunchBreak = JOptionFunction("How long is your lunch break (written 0.xx)?");
-        double daysTotal = JOptionFunction("How many days will/have you work(ed)?");
-        double taxPercentage = JOptionFunction("What is your tax percentage (written 0.xx)?");
+        double hourlyPay = getDouble("What is your hourly pay?");
+        double hoursWorked = getDouble("How many hours have you worked?");
+        double lunchBreak = getDouble("How long is your lunch break (written 0.xx)?");
+        double daysTotal = getDouble("How many days will/have you work(ed)?");
+        double taxPercentage = getDouble("What is your tax percentage (written 0.xx)?");
 
         double calculatedPay = calculatePay(hoursWorked, hourlyPay, lunchBreak, daysTotal);
         double finishedSalary = SalaryAfterTax(calculatedPay, taxPercentage);
@@ -31,9 +31,9 @@ public class MainApplication {
         );
     }
 
-    private static double JOptionFunction(String JOptionText) {
+    private static double getDouble(String doubleValue) {
         double text = Double.parseDouble(
-                JOptionPane.showInputDialog(null, JOptionText)
+                JOptionPane.showInputDialog(null, doubleValue)
         );
 
         return text;
@@ -77,7 +77,7 @@ public class MainApplication {
     }
 
     public static double SalaryAfterTax(double salary, double tax) {
-
+        tax = 1 - tax;
         return (salary * tax);
     }
 }
