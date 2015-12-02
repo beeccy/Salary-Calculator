@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -9,16 +10,25 @@ public class MainApplication {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Hourly pay: ");
-        double hourlyPay = scanner.nextDouble();
-        System.out.println("Hours worked: ");
-        double hoursWorked = scanner.nextDouble();
-        System.out.println("Lunch break: ");
-        double lunchBreak = scanner.nextDouble();
-        System.out.println("How many days? ");
-        double daysTotal = scanner.nextDouble();
-        System.out.println("Tax percentage (written 0.xx): ");
-        double taxPercentage = percentage - scanner.nextDouble();
+        double hourlyPay = Double.parseDouble(
+                JOptionPane.showInputDialog(null, "What is your hourly pay?")
+        );
+
+        double hoursWorked = Double.parseDouble(
+                JOptionPane.showInputDialog(null, "How many hours have you worked?")
+        );
+
+        double lunchBreak = Double.parseDouble(
+                JOptionPane.showInputDialog(null, "How long is your lunch break (written 0.xx)?")
+        );
+
+        double daysTotal = Double.parseDouble(
+                JOptionPane.showInputDialog(null, "How many days will/have you work(ed)?")
+        );
+
+        double taxPercentage = Double.parseDouble(
+                JOptionPane.showInputDialog(null, "What is your tax percentage (written 0.xx)?")
+        );
 
         double calculatedPay = calculatePay(hoursWorked, hourlyPay, lunchBreak, daysTotal);
         double finishedSalary = SalaryAfterTax(calculatedPay, taxPercentage);
@@ -29,18 +39,41 @@ public class MainApplication {
         String euro = "€";
         String norwegianCrown = " kr";
 
-        Print(calculatedPay);
+        System.out.println(calculatedPay + norwegianCrown);
         System.out.println(finishedSalary + norwegianCrown);
 
-        System.out.println(nokToUsd(finishedSalary) + americanDollar);
-
+        System.out.println(americanDollar + nokToUsd(finishedSalary));
+        System.out.println(japaneseYen + nokToYen(finishedSalary));
+        System.out.println(britishPounds + nokToBPounds(finishedSalary));
+        System.out.println(euro + nokToEuro(finishedSalary));
     }
 
     private static double nokToUsd(double salaryUSDollars) {
-        double currency = ;
+        double currency = 0.12;
         salaryUSDollars = currency * salaryUSDollars;
 
         return salaryUSDollars;
+    }
+
+    private static double nokToYen(double salaryYen) {
+        double currency = 14.24;
+        salaryYen = currency * salaryYen;
+
+        return salaryYen;
+    }
+
+    private static double nokToBPounds(double salaryPounds) {
+        double currency = 0.077;
+        salaryPounds = currency * salaryPounds;
+
+        return salaryPounds;
+    }
+
+    private static double nokToEuro(double salaryEuro) {
+        double currency = 0.11;
+        salaryEuro = currency * salaryEuro;
+
+        return salaryEuro;
     }
 
     /* This calculates time correctly */
