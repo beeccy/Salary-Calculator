@@ -19,13 +19,16 @@ public class MainApplication {
         String euro = "€";
         String norwegianCrown = " kr";
 
-        System.out.println(calculatedPay + norwegianCrown);
-        System.out.println(finishedSalary + norwegianCrown);
-
-        System.out.println(americanDollar + nokToUsd(finishedSalary));
-        System.out.println(japaneseYen + nokToYen(finishedSalary));
-        System.out.println(britishPounds + nokToBPounds(finishedSalary));
-        System.out.println(euro + nokToEuro(finishedSalary));
+        JOptionPane.showMessageDialog(null,
+                "NOK before tax:\n" + calculatedPay + norwegianCrown + "\n" +
+                "\nNOK after tax:\n" + finishedSalary + norwegianCrown + "\n" +
+                        "\nNOK to USD:\n" + americanDollar + nokToUsd(finishedSalary) + "\n" +
+                        "\nNOK to JPY\n" + japaneseYen + nokToYen(finishedSalary) + "\n" +
+                        "\nNOK to GBP\n" + britishPounds + nokToBPounds(finishedSalary) + "\n" +
+                        "\nNOK to EUR\n" + euro + nokToEuro(finishedSalary),
+                "Your salary",
+                1
+        );
     }
 
     private static double JOptionFunction(String JOptionText) {
@@ -66,11 +69,11 @@ public class MainApplication {
 
     /* This calculates time correctly */
     public static double calculatePay(double hours, double pay, double lunch, double days) {
-        double toAvoidDesimals = 100;
+        double toAvoidDecimals = 100;
 
-        double workHours = hours * toAvoidDesimals;
+        double workHours = hours * toAvoidDecimals;
 
-        return ((workHours - lunch) * pay) * days / toAvoidDesimals;
+        return ((workHours - lunch) * pay) * days / toAvoidDecimals;
     }
 
     public static double SalaryAfterTax(double salary, double tax) {
